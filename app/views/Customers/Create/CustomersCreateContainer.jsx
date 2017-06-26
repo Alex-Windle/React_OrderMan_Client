@@ -12,6 +12,7 @@
  *
  * @exports CustomersCreateContainer
  */
+ 
 import { connect } from 'react-redux';
 import { performCreateCustomer } from './actions/customersCreateActions';
 
@@ -25,7 +26,7 @@ class CustomersCreateContainer extends Component {
 
     this.submitCustomerCreate = (e) => {
       e.preventDefault();
-      const values = this.props.CustomerCreateForm.values;
+      const values = this.props.customerCreateForm.values;
       this.props.performCreateCustomer(values);
     }
   }
@@ -47,7 +48,7 @@ class CustomersCreateContainer extends Component {
 
 const mapStateToProps = state => ({
   customersCreate: state.customersCreate,
-  customerCreateForm: state.form.customerDetailsForm,
+  customerCreateForm: state.form.customerCreateForm,
 });
 
 const mapDispatchToProps = () => ({

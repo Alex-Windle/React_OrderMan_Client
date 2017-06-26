@@ -31,18 +31,13 @@ class CustomerCreateForm extends Component {
 	              <div className="spacer" />
 	              <SuccessButton
 	                block
-	                title="Log in"
+	                title="Submit"
 	              />
 	              <div className="spacer" />
 	            </div>
 	          </form>
 	        </div>
 	        <div className="container-fluid">
-	          <h4>
-	            <Link to="/">
-	              {"I don't have an account yet"}
-	            </Link>
-	          </h4>
 	        </div>
 	        <div className="spacer" />
       </div>
@@ -51,5 +46,5 @@ class CustomerCreateForm extends Component {
 }
 
 export default reduxForm({
-  form: 'CustomerCreateForm',
+  form: 'customerCreateForm',
 })(CustomerCreateForm);
