@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 /**
  * GENERAL NOTES
  * @author TalkRise <admin@talkrise.com>
@@ -6,6 +8,7 @@
 
 // Module imports
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 
 
@@ -14,6 +17,10 @@ import LoginForm from './components/LoginForm';
 import SignupForm from './components/SignupForm';
 import UnauthenticatedLayout from '../common/layouts/UnauthenticatedLayout';
 
+// Action imports 
+
+import { performSignup } from './actions/signupActions'; 
+import { performLogin } from './actions/loginActions';
 
 /**
  * @class UnauthenticatedContainer
@@ -26,7 +33,7 @@ import UnauthenticatedLayout from '../common/layouts/UnauthenticatedLayout';
  *   "/" renders the SignupForm
  *
  */
-export default class UnauthenticatedContainer extends Component {
+class UnauthenticatedContainer extends Component {
   constructor(props) {
     super(props);
 
@@ -37,6 +44,8 @@ export default class UnauthenticatedContainer extends Component {
      */
     this.signup = (event) => {
       event.preventDefault();
+      const values = this.props.signupForm.values;
+      this.props.performSignup(values);
     };
 
 
@@ -46,6 +55,8 @@ export default class UnauthenticatedContainer extends Component {
      */
     this.login = (event) => {
       event.preventDefault();
+      const values = this.props.loginForm.values;
+      this.props.performLogin(values);
     };
   }
 
@@ -82,3 +93,18 @@ export default class UnauthenticatedContainer extends Component {
 UnauthenticatedContainer.propTypes = {};
 
 UnauthenticatedContainer.defaultProps = {};
+
+
+const mapStateToProps = state => ({
+  signup: state.signup,
+  login: state.login,
+  signupForm: state.form.signupForm,
+  loginForm: state.form.loginForm,
+});
+
+const mapDispatchToProps = () => ({
+  performSignup,
+  performLogin,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps())(UnauthenticatedContainer);

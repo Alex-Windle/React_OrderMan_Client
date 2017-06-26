@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 /**
  * GENERAL NOTES
  * @author TalkRise <admin@talkrise.com>
@@ -12,3 +14,23 @@
  *
  * @exports The rootReducer
  */
+
+ import { combineReducers } from 'redux';
+ import { routerReducer } from 'react-router-redux';
+ import { reducer as formReducer } from 'redux-form';
+
+ import signupReducer from '../views/Unauthenticated/reducers/signupReducer';
+ import loginReducer from '../views/Unauthenticated/reducers/loginReducer';
+ import authReducer from '../views/Unauthenticated/reducers/authReducer';
+ import customersCreateReducer from '../views/Customers/Create/reducers/customersCreateReducer'; 
+
+ const appReducer = combineReducers({
+ 	form: formReducer,
+ 	routing: routerReducer,
+ 	signup: signupReducer,
+ 	login: loginReducer,
+ 	auth: authReducer,
+ 	customersCreate: customersCreateReducer,
+ });
+
+ export default (state, action) => appReducer(state, action);

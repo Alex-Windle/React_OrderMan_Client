@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 /**
  * GENERAL NOTES
  * @author TalkRise <admin@talkrise.com>
@@ -18,3 +20,44 @@
  *
  * @exports protected Higher-Order-Component
  */
+
+// Module imports
+import React, { Component } from 'react';
+
+// this higher order component give you additional props!
+import { withRouter } from 'react-router-dom';
+
+
+// Custom imports
+import {
+  isAuthenticated,
+} from '../../../utilities/authUtilities';
+
+
+/**
+ * @description HOC to detect authentication status and route accordingly
+ * Requires a user to be authenticated in order to access the component
+ */
+export default (BaseComponent) => {
+  class Protected extends Component {
+    componentWillMount() {
+      // Check if user is authenticated; if so, return component!
+      isAuthenticated();
+    }
+
+    componentWillReceiveProps(nextProps) {
+      if (nextProps.location !== this.props.location) {
+        isAuthenticated();
+      }
+    }
+    render() {
+      return <BaseComponent {...this.props} />;
+    }
+  }
+
+
+  Protected.propTypes = {
+  };
+
+  return withRouter(Protected);
+};
