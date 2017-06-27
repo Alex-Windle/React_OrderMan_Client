@@ -1,5 +1,4 @@
 /* eslint-disable */
-
 /**
  * GENERAL NOTES
  * @author TalkRise <admin@talkrise.com>
@@ -42,6 +41,5 @@ export const performCreateCustomer = (customerData) => {
 		.catch((error) => {
 			dispatch(receiveCustomersCreateFailure(error));
 		});
-
 	};
 };

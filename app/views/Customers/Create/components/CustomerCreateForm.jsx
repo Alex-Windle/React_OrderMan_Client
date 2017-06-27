@@ -1,7 +1,6 @@
 /* eslint-disable */
 
 import React, { Component } from 'react';
-
 import { Link } from 'react-router-dom';
 
 import {
@@ -13,7 +12,6 @@ import SuccessButton from '../../../common/buttons/SuccessButton';
 import renderTextField from '../../../common/forms/renderTextField';
 
 class CustomerCreateForm extends Component {
-
 	render() {
 		const { handleSubmit } = this.props;
 		return (

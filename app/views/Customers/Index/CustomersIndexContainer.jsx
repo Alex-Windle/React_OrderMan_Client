@@ -16,10 +16,10 @@
  * @exports CustomersIndexContainer
  */
 
-
 // Module imports
 import React, { Component } from 'react';
 
+import CustomersTable from './components/CustomersTable';
 
 export default class CustomersIndexContainer extends Component {
   render() {
@@ -31,6 +31,7 @@ export default class CustomersIndexContainer extends Component {
           <br />
           Only authenticated users should see this!
         </h3>
+        <CustomersTable />
       </div>
     );
   }

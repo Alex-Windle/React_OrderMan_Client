@@ -12,7 +12,7 @@
  *
  * @exports CustomersCreateContainer
  */
- 
+
 import { connect } from 'react-redux';
 import { performCreateCustomer } from './actions/customersCreateActions';
 
@@ -24,24 +24,16 @@ class CustomersCreateContainer extends Component {
   constructor(props) {
     super(props);
 
-    this.submitCustomerCreate = (e) => {
-      e.preventDefault();
-      const values = this.props.customerCreateForm.values;
+    this.submitCustomerCreate = (event) => {
+      event.preventDefault();
+      const { values } = this.props.customerCreateForm;
       this.props.performCreateCustomer(values);
     }
   }
 
   render() {
     return (
-      <div>
-        <h1>This is the Customers Create Container!</h1>
         <CustomerCreateForm handleSubmit={this.submitCustomerCreate} /> 
-        <h3>
-          This will become a protected page when we do authentication.
-          <br />
-          Only authenticated users should see this!
-        </h3>
-      </div>
     );
   }
 }
