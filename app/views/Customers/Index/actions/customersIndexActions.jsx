@@ -24,7 +24,8 @@ const receiveCustomersIndexFailure = () => ({
 });
 
 export const performCustomersIndexSearch = () => {
-	console.log("Success! Kick off performCustomersIndexSearch()!!!");
+	var test = "test"; 
+	console.log(test);
 }
  	
 
