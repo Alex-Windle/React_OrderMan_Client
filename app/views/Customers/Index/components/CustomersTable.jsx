@@ -14,9 +14,11 @@
 
 import React, { Component } from 'react';
 
+import { performCustomerIndex } from '../actions/customersIndexActions';
+
 class CustomersTable extends Component {
 	
-	componentWillMount() {
+	componentWillMount() { 
 		// call performCustomerIndex() function here
 		// this call fetches data from API
 		// then, it saves that data to Redux store

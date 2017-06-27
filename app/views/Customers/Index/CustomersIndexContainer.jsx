@@ -19,9 +19,30 @@
 // Module imports
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+
+import { performCustomersIndexSearch } from './actions/customersIndexActions'; 
+
 import CustomersTable from './components/CustomersTable';
 
 export default class CustomersIndexContainer extends Component {
+  constructor(props) {
+    super(props); 
+
+    /**
+     * @function findCustomers
+     * @description Retrieves Customers with potential searchTerm
+     * @param page
+     */
+    this.findCustomers = () => {
+      console.log("kick off findCustomers()...");
+      this.props.performCustomersIndexSearch();
+    };
+  }
+
+  componentWillMount() {
+    this.findCustomers(); 
+  }
+
   render() {
     return (
       <div>
