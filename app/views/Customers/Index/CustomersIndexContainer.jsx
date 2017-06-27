@@ -18,13 +18,24 @@
 
 // Module imports
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
-import { performCustomersIndexSearch } from './actions/customersIndexActions'; 
-
+// Component imports
 import CustomersTable from './components/CustomersTable';
 
-export default class CustomersIndexContainer extends Component {
+// Actions imports
+import { performCustomersIndexSearch } from './actions/customersIndexActions'; 
+
+// Custom imports 
+import { history } from '../../Routes';
+
+// PropTypes imports
+import {
+  CustomersIndexPropType,
+} from '../../../customPropTypes';
+
+class CustomersIndexContainer extends Component {
   constructor(props) {
     super(props); 
 
@@ -34,7 +45,6 @@ export default class CustomersIndexContainer extends Component {
      * @param page
      */
     this.findCustomers = () => {
-      console.log("kick off findCustomers()...");
       this.props.performCustomersIndexSearch();
     };
   }
@@ -44,17 +54,45 @@ export default class CustomersIndexContainer extends Component {
   }
 
   render() {
+    const {
+      customersIndex: {
+        customers
+      },
+    } = this.props;
+
     return (
       <div>
         <h1>This is the Customers Index Container!</h1>
-        <Link to="customers/create">Add new customer</Link>
         <h3>
           This will become a protected page when we do authentication.
           <br />
           Only authenticated users should see this!
         </h3>
-        <CustomersTable />
+          {(() => {
+            
+            return (
+              <CustomersTable customers={customers} />
+            ); 
+          })()}
       </div>
     );
   }
 }
+
+CustomersIndexContainer.propTypes = {
+  customersIndex: CustomersIndexPropType,
+  performCustomersIndexSearch: PropTypes.func.isRequired,
+}; 
+
+CustomersIndexContainer.defaultProps = {}; 
+
+const mapStateToProps = state => ({
+  customersIndex: state.customersIndex,
+}); 
+
+const mapDispatchToProps = () => ({
+  performCustomersIndexSearch,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps())(CustomersIndexContainer);
+

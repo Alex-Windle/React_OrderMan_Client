@@ -1,40 +1,53 @@
 /**
- * GENERAL NOTES
- * @author TalkRise <admin@talkrise.com>
- *
- * @description This redux-form is responsible for displaying information about a given Customer.
- *
- * @description It is also used for creating a Customer.
- *
- */
- // url address - /customers 
-  // GET 
- // This component shows all customers 
- // Pagination component (common < pagination )
+* GENERAL NOTES
+* @author TalkRise <admin@talkrise.com>
+*
+* @description This redux-form is responsible for displaying information about a given Customer.
+*
+* @description It is also used for creating a Customer.
+*
+*/
+// url address - /customers 
+// GET 
+// This component shows all customers 
+// Pagination component (common < pagination )
 
+// Module imports
 import React, { Component } from 'react';
+import PropTypes from 'prop-types'; 
 
-import { performCustomerIndex } from '../actions/customersIndexActions';
+// Action imports
+// import { performCustomerIndex } from '../actions/customersIndexActions';
 
-class CustomersTable extends Component {
-	
-	componentWillMount() { 
-		// call performCustomerIndex() function here
-		// this call fetches data from API
-		// then, it saves that data to Redux store
-		// then, render it in the UI !!! 
-	}
+// PropType imports
+import {
+  CustomerPropType
+} from '../../../../customPropTypes';
 
+export default class CustomersTable extends Component {
 	render() {
+		const { customers } = this.props; 
 		return (
-			<div>Customers Table Goes Here!!!</div>
+			<div>
+				Customer List: 
+				<ul>
+					{(() => {
+						if (customers.length) {
+							return customers.map(customer => 
+								<li>{customer.first_name}</li>
+							)
+						}
+					})()}
+				</ul>
+			</div>
 		);
 	}
 };
 
-export default CustomersTable;
+// What is CustomerPropType? 
+// It's a custom shape. 
+CustomersTable.propTypes = {
+	customers: PropTypes.arrayOf(CustomerPropType).isRequired,
+}
 
-// Use connect helper function to give this component access to Redux store
-
-// Use .mapStoreToProps to pull props into this component
-
+CustomersTable.defaultProps = {}; 

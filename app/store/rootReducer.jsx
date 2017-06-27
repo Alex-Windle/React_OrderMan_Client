@@ -23,14 +23,16 @@
  import loginReducer from '../views/Unauthenticated/reducers/loginReducer';
  import authReducer from '../views/Unauthenticated/reducers/authReducer';
  import customersCreateReducer from '../views/Customers/Create/reducers/customersCreateReducer'; 
+ import customersIndexReducer from '../views/Customers/Index/reducers/customersIndexReducer';
 
  const appReducer = combineReducers({
- 	form: formReducer,
- 	routing: routerReducer,
- 	signup: signupReducer,
- 	login: loginReducer,
  	auth: authReducer,
  	customersCreate: customersCreateReducer,
+ 	customersIndex: customersIndexReducer,
+ 	form: formReducer,
+ 	login: loginReducer,
+ 	routing: routerReducer,
+ 	signup: signupReducer,	
  });
 
  export default (state, action) => appReducer(state, action);
